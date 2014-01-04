@@ -145,7 +145,7 @@ namespace TwitterStreamingStats
             {
                 _queuedTweets.Add(streamReader.ReadLine());
             }
-
+            _queuedTweets.CompleteAdding();
         }
 
         static void ProcessQueue()
@@ -164,10 +164,10 @@ namespace TwitterStreamingStats
                 stream.Close();
                 var tweet = ((ATweet)rootObject);
 
+                //contains a url?
                 if (tweet.text != null && tweet.text.Contains("http"))
                     containsUrl += 1;
 
-                //contains a url?
                 if (tweet != null && tweet.entities != null && tweet.entities.media != null)
                 {
                     if (tweet.entities.media.Count(m => m.url != null || m.display_url != null || m.expanded_url != null || m.media_url != null) > 0)
