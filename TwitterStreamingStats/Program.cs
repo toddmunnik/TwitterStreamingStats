@@ -120,14 +120,12 @@ namespace TwitterStreamingStats
 
             // Now build the actual request
 
-            ServicePointManager.Expect100Continue = false;
             ResourceUrl += "?track=" + trackvalue;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ResourceUrl);
             request.Headers.Add("Authorization", authHeader);
             request.Method = "GET";
             request.ContentType = "application/x-www-form-urlencoded";
             request.KeepAlive = true;
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
 
             // Retrieve the response data
             WebResponse response = request.GetResponse();
