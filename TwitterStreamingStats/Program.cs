@@ -141,7 +141,7 @@ namespace TwitterStreamingStats
 
             while (!streamReader.EndOfStream)
             {
-                _queuedTweets.Add(streamReader.ReadLine());
+                _queuedTweets.TryAdd(streamReader.ReadLine());
             }
             _queuedTweets.CompleteAdding();
         }
